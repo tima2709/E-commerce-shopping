@@ -13,6 +13,8 @@ const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const {totalItems} = useSelector(state => state.cart)
     const [searchItem, setSearchItem] = useState('')
+    const [position, setPosition] = useState(window.pageYOffset)
+    const [visible, setVisible] = useState(true)
 
 
     const handleSearch = () => {
@@ -23,10 +25,30 @@ const Navbar = () => {
     useEffect(() => {
         dispatch(fetchCategories())
         dispatch(getCartTotal())
-    },[totalItems]);
+
+
+    },[]);
+
+
+
+    useEffect(()=> {
+        const handleScroll = () => {
+            let moving = window.pageYOffset
+
+            setVisible(position > moving);
+            setPosition(moving)
+        };
+        window.addEventListener("scroll", handleScroll);
+        return(() => {
+            window.removeEventListener("scroll", handleScroll);
+        })
+    })
+
+    const cls = visible ? "visible" : "hidden";
+
 
     return (
-        <nav className={'navbar'}>
+        <nav className={`navbar ${cls} `}>
             <div className="navbar-content">
                 <div className="container">
                     <div className="navbar-top flex flex-between">
