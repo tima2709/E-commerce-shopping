@@ -15,7 +15,7 @@ const UserPage = () => {
 
     // console.log(categories, 'cat')
 
-    return isAuth ? (
+    return  (
         <div className={'container'}>
             <div className={'welcome-title'}>
                 <h1>Welcome {email}</h1>
@@ -37,8 +37,8 @@ const UserPage = () => {
                 <AddProduct/>
             </div>
         </div>
-    ) : (
-        <Navigate to={'/'}/>
+    // ) : (
+        // <Navigate to={'/'}/>
     );
 };
 

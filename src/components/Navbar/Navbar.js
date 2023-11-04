@@ -30,9 +30,9 @@ const Navbar = () => {
         dispatch(getCartTotal())
     },[]);
 
-    const heyUser = () => {
-        if(!isAuth) return toast.error('Please sing in sir')
-    }
+    // const heyUser = () => {
+    //     // if(!isAuth) return toast.error('Please sing in sir')
+    // }
 
 
     // useEffect(()=> {
@@ -86,7 +86,7 @@ const Navbar = () => {
                             </Link>
                         </div>
                         <div className={'user-link'}>
-                            <Link to={isAuth ? '/user' : '/login'}  onClick={heyUser}>
+                            <Link to={'/user'} >
                                 <button className={'user-btn'}>
                                     <i className="fa-solid fa-user"></i>
                                     <p>{email}</p>
