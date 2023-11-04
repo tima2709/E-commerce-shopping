@@ -13,7 +13,7 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const {data: categories} = useSelector((state) => state.category)
 
-    console.log(categories, 'cat')
+    // console.log(categories, 'cat')
 
     return isAuth ? (
         <div className={'container'}>
