@@ -1,0 +1,11 @@
+.add-form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  input {
+    padding: 10px 15px;
+    border: 1px solid #000000;
+    border-radius: 15px;
+  }
+}

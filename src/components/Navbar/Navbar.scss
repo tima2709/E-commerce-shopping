@@ -3,22 +3,22 @@
 .navbar{
   padding: 16px 0 0 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  position: fixed;
+  //position: fixed;
   width: 100%;
-  height: 124px;
+  //height: 124px;
   background-color: #ffffff;
-  top: 0;
-  z-index: 9999;
-  transition: transform .1s linear;
-  &.visible {
-    top: 0;
-    transition: top .2s ease-out;
-  }
-
-  &.hidden {
-    top: -124px;
-    transition: top .2s ease-out;
-  }
+  //top: 0;
+  //z-index: 9999;
+  //transition: transform .1s linear;
+  //&.visible {
+  //  top: 0;
+  //  transition: top .2s ease-out;
+  //}
+  //
+  //&.hidden {
+  //  top: -124px;
+  //  transition: top .2s ease-out;
+  //}
   &-brand{
     font-size: 30px;
     font-weight: 700;
@@ -51,6 +51,39 @@
       &:hover{
         background-color: $clr-regal-blue;
       }
+    }
+  }
+
+  .user-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .user-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      //width: 40px;
+      //height: 40px;
+
+      i {
+        color: #808999;
+        &:hover {
+          color: $clr-regal-blue;
+        }
+      }
+    }
+    .login-btn {
+      background: $clr-gold;
+      padding: 5px 10px;
+      color: #ffffff;
+    }
+    .register-btn {
+      background: $clr-regal-blue;
+      padding: 5px 10px;
+      color: #ffffff;
     }
   }
 

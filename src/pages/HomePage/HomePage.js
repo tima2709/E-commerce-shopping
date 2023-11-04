@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import Slider from '../../components/Slider/Slider'
 import './HomePage.scss'
 import Category from "../../components/Category/Category";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,6 +7,7 @@ import SingleCategory from "../../components/SingleCategory/SingleCategory";
 import {fetchProducts} from "../../store/productSlice";
 import ProductList from "../../components/ProductList/ProductList";
 import FilterProducts from "../../components/FilterProducts/FilterProducts";
+import SwiperImg from "../../components/Slider/SwiperImg";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ const HomePage = () => {
 
     return (
         <div className={'home-page'}>
-            <Slider/>
+            <SwiperImg/>
             <FilterProducts categories={categories}/>
             <Category categories={categories} status={categoryStatus}/>
             <ProductList products={products} status={productStatus} titlePage={'OUR PRODUCTS'}/>

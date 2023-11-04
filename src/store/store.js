@@ -5,6 +5,9 @@ import productReducer from './productSlice';
 import cartReducer from './cartSlice';
 import searchReducer from "./searchSlice";
 import filterReducer from "./filterSlice";
+import addProductReducer from "./addProductSlice";
+import userReducer from './authSlice';
+import createCategoryReducer from './createCategorySlice';
 
 const store = configureStore({
     reducer: {
@@ -14,6 +17,9 @@ const store = configureStore({
         cart: cartReducer,
         search: searchReducer,
         filter: filterReducer,
+        addProduct: addProductReducer,
+        createCategory: createCategoryReducer,
+        user: userReducer,
     }
 })
 

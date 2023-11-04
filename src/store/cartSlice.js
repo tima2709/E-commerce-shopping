@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {toast} from "react-toastify";
 
 const fetchLocalStorage = () => {
     let cart = localStorage.getItem('cart');
@@ -44,16 +45,19 @@ const cartSlice = createSlice({
             } else {
                 state.data.push(action.payload);
                 storeInLocalStorage(state.data)
+                toast.success('product added to the cart!')
             }
         },
         removeFromCart(state, action) {
             const tempCart = state.data.filter(item => item.id !== action.payload);
             state.data = tempCart;
             storeInLocalStorage(state.data)
+            toast.success('product removed from the cart!')
         },
         clearCart(state) {
             state.data = [];
             storeInLocalStorage(state.data)
+            toast.success('cart is clear!')
         },
         getCartTotal(state) {
             state.totalAmount = state.data.reduce((cartTotal, cartItem) => {

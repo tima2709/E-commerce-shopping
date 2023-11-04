@@ -30,7 +30,6 @@ export const axiosSearchProducts = (searchedItem) => {
         try {
             await axios(`${BASE_URL}products/?title=${searchedItem}`)
                 .then(({data}) => {
-                    console.log(data, 'data')
                     dispatch(setSearchProducts(data));
                     dispatch(setStatus(STATUS.IDLE))
                 })

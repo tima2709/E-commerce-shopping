@@ -7,11 +7,24 @@ import store from "./store/store"
 import {Provider} from "react-redux";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import FilteredPage from "./pages/FilteredPage/FilteredPage";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import LoginPage from "./pages/AuthPages/LoginPage";
+import SingUpPage from "./pages/AuthPages/SingUpPage";
+import './firebase';
+import UserPage from "./pages/userPage/UserPage";
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
+          <ToastContainer
+              theme="dark"
+              position="top-right"
+              autoClose={2000}
+              closeOnClick
+              pauseOnHover={false}
+          />
           <BrowserRouter>
               <Navbar/>
               <Routes>
@@ -20,6 +33,9 @@ function App() {
                   <Route path={'/cart'} element={<Cart/>}/>
                   <Route path={'/search'} element={<SearchPage/>}/>
                   <Route path={'/filter'} element={<FilteredPage/>}/>
+                  <Route path={'/user'} element={<UserPage/>}/>
+                  <Route path={'/login'} element={<LoginPage/>}/>
+                  <Route path={'/register'} element={<SingUpPage/>}/>
               </Routes>
               <Footer/>
           </BrowserRouter>
