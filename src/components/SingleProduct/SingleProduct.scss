@@ -50,6 +50,11 @@
     }
 
     .details-left {
+      .details-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
       .description {
         margin: 6px 0 12px 0;
       }

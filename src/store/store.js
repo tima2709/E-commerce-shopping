@@ -8,6 +8,7 @@ import filterReducer from "./filterSlice";
 import addProductReducer from "./addProductSlice";
 import userReducer from './authSlice';
 import createCategoryReducer from './createCategorySlice';
+import favoriteReducer from './favoriteSlice';
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         addProduct: addProductReducer,
         createCategory: createCategoryReducer,
         user: userReducer,
+        favorite: favoriteReducer
     }
 })
 

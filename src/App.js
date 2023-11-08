@@ -13,6 +13,7 @@ import LoginPage from "./pages/AuthPages/LoginPage";
 import SingUpPage from "./pages/AuthPages/SingUpPage";
 import './firebase';
 import UserPage from "./pages/userPage/UserPage";
+import FavoritePage from "./pages/FavoritePage/FavoritePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                   <Route path={'/user'} element={<UserPage/>}/>
                   <Route path={'/login'} element={<LoginPage/>}/>
                   <Route path={'/register'} element={<SingUpPage/>}/>
+                  <Route path={'/favorite'} element={<FavoritePage/>}/>
               </Routes>
               <Footer/>
           </BrowserRouter>

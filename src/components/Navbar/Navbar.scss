@@ -88,6 +88,9 @@
   }
 
   &-btns{
+    display: flex;
+    align-items: center;
+    gap: 20px;
     .add-to-cart-btn{
       margin-right: 28px;
       color: $clr-pine-green;

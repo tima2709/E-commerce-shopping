@@ -5,13 +5,20 @@ import {setModalVisible} from "../../store/modalSlice";
 import {formatPrice} from "../../utils/helpers";
 import {addToCart} from "../../store/cartSlice";
 import {useNavigate} from "react-router-dom";
+import {addToFavorite} from "../../store/favoriteSlice";
+import {logDOM} from "@testing-library/react";
 
 
 const SingleProduct = () => {
     const dispatch = useDispatch()
     const [qty, setQty] = useState(1)
-    const navigate = useNavigate()
+
     const {data: product} = useSelector(state => state.modal)
+
+    const {data: favorite} = useSelector(state => state.favorite)
+
+
+
 
     const increaseQty = () => {
         setQty((prevQty) => {
@@ -40,6 +47,12 @@ const SingleProduct = () => {
         // dispatch(setModalVisible(false))
         // navigate('/cart');
     }
+
+    const addToFavoriteHandler = (product) => {
+        dispatch(addToFavorite(product))
+    }
+
+
     return (
         <div className={'overlay-bg'}>
             <div className="product-details-modal bg-white">
@@ -89,14 +102,31 @@ const SingleProduct = () => {
                                     </button>
                                 </div>
                             </div>
-                            <button
-                                type={'button'}
-                                className={'btn-primary add-to-cart-btn'}
-                                onClick={() => addToCartHandler(product)}
-                            >
-                                <span className={'btn-icon'}><i className={'fas fa-cart-shopping'}></i></span>
-                                <span className={'btn-text'}>Add To Cart</span>
-                            </button>
+                            <div className={'details-btns'}>
+                                <button
+                                    type={'button'}
+                                    className={'btn-primary add-to-cart-btn'}
+                                    onClick={() => addToCartHandler(product)}
+                                >
+                                    <span className={'btn-icon'}><i className={'fas fa-cart-shopping'}></i></span>
+                                    <span className={'btn-text'}>Add To Cart</span>
+                                </button>
+                                <button
+                                    type={'button'}
+                                    className={'btn-primary add-to-cart-btn'}
+                                    onClick={() => addToFavoriteHandler(product)}
+                                >
+                                <span>
+                                    {
+                                        favorite.find(el => el.id === product.id)
+                                            ?  <i className="fa-solid fa-heart" style={{color: "#fa0505"}}></i>
+                                            :  <i className="fa-regular fa-heart"></i>
+
+                                    }
+
+                                </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -76,6 +76,14 @@ const Navbar = () => {
                             </Link>
                         </div>
                         <div className="navbar-btns">
+                            <Link to={'/favorite'} className={'add-to-cart-btn flex'}>
+                                <span className={'btn-ico'}>
+                                    <i className="fa-regular fa-heart"></i>
+                                </span>
+                                <div className={'btn-txt fw-5'}>
+                                    favorite
+                                </div>
+                            </Link>
                             <Link to={'/cart'} className={'add-to-cart-btn flex'}>
                                 <span className={'btn-ico'}>
                                     <i className={'fas fa-shopping-cart'}></i>
@@ -84,6 +92,7 @@ const Navbar = () => {
                                     cart <span className={'cart-count-value'}>{totalItems}</span>
                                 </div>
                             </Link>
+
                         </div>
                         <div className={'user-link'}>
                             <Link to={'/user'} >
