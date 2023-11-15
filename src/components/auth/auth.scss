@@ -1,20 +1,55 @@
-.authForm {
+.input-forms {
+  width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  input {
-    border: 1px solid #000000;
-    padding: 10px 5px;
-    margin: 5px 0;
-  }
-  button {
-    border: none;
-    padding: 10px 5px;
-    background: #0046af;
-    color: #ffffff;
-    cursor: pointer;
-    &:hover {
-      background: #003077;
-    }
-  }
+  justify-content: center;
+  gap: 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.08);
+  padding: 16px;
+}
+
+.inputs-register {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.inputs-register input {
+  border: 1px solid #808185;
+  border-radius: 8px;
+  background: #F8F8F8;
+  padding: 12px 8px 12px 16px;
+  width: 100%;
+}
+
+label {
+  display: contents;
+  color: #151317;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 136.187%; /* 21.79px */
+}
+
+.inputs-register p {
+  color: #bf1624;
+}
+
+.auth-btn {
+  border-radius: 8px;
+  background: #512689;
+  padding: 8px 12px;
+  border: none;
+  color: #ffffff;
+  font-family: Roboto,sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 136.187%;
 }

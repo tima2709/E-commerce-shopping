@@ -11,9 +11,9 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import LoginPage from "./pages/AuthPages/LoginPage";
 import SingUpPage from "./pages/AuthPages/SingUpPage";
-import './firebase';
 import UserPage from "./pages/userPage/UserPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
+import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Provider store={store}>
           <ToastContainer
               theme="dark"
-              position="top-right"
+              position="bottom-right"
               autoClose={2000}
               closeOnClick
               pauseOnHover={false}
@@ -34,7 +34,11 @@ function App() {
                   <Route path={'/cart'} element={<Cart/>}/>
                   <Route path={'/search'} element={<SearchPage/>}/>
                   <Route path={'/filter'} element={<FilteredPage/>}/>
-                  <Route path={'/user'} element={<UserPage/>}/>
+                  <Route path={'/user'} element={
+                      <PrivateRoute>
+                          <UserPage/>
+                      </PrivateRoute>
+                  }/>
                   <Route path={'/login'} element={<LoginPage/>}/>
                   <Route path={'/register'} element={<SingUpPage/>}/>
                   <Route path={'/favorite'} element={<FavoritePage/>}/>

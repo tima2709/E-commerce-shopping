@@ -6,9 +6,10 @@ import cartReducer from './cartSlice';
 import searchReducer from "./searchSlice";
 import filterReducer from "./filterSlice";
 import addProductReducer from "./addProductSlice";
-import userReducer from './authSlice';
+import authReducer from './authSlice';
 import createCategoryReducer from './createCategorySlice';
 import favoriteReducer from './favoriteSlice';
+
 
 const store = configureStore({
     reducer: {
@@ -20,8 +21,9 @@ const store = configureStore({
         filter: filterReducer,
         addProduct: addProductReducer,
         createCategory: createCategoryReducer,
-        user: userReducer,
-        favorite: favoriteReducer
+        auth: authReducer,
+        favorite: favoriteReducer,
+
     }
 })
 

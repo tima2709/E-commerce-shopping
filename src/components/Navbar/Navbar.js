@@ -6,8 +6,6 @@ import {fetchCategories} from "../../store/categorySlice";
 import {getCartTotal} from "../../store/cartSlice";
 import {axiosSearchProducts} from "../../store/searchSlice";
 import SearchPage from "../../pages/SearchPage/SearchPage";
-import {useAuth} from "../hooks/user-auth";
-import {toast} from "react-toastify";
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -15,10 +13,8 @@ const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const {totalItems} = useSelector(state => state.cart)
     const [searchItem, setSearchItem] = useState('')
-    // const [position, setPosition] = useState(window.pageYOffset)
-    // const [visible, setVisible] = useState(true)
 
-    const {email, isAuth} = useAuth()
+    const {isAuth} = useSelector(state => state.auth)
 
     const handleSearch = () => {
         dispatch(axiosSearchProducts(searchItem))
@@ -28,27 +24,11 @@ const Navbar = () => {
     useEffect(() => {
         dispatch(fetchCategories())
         dispatch(getCartTotal())
-    },[]);
+    }, [dispatch]);
 
     // const heyUser = () => {
     //     // if(!isAuth) return toast.error('Please sing in sir')
     // }
-
-
-    // useEffect(()=> {
-    //     const handleScroll = () => {
-    //         let moving = window.pageYOffset
-    //
-    //         setVisible(position > moving);
-    //         setPosition(moving)
-    //     };
-    //     window.addEventListener("scroll", handleScroll);
-    //     return(() => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     })
-    // })
-    //
-    // const cls = visible ? "visible" : "hidden";
 
 
     return (
@@ -61,7 +41,8 @@ const Navbar = () => {
                             <span className={'text-gold'}>Hub.</span>
                         </Link>
                         <div className={'navbar-search flex'}>
-                            <input type="text" placeholder={'Search here ...'} value={searchItem} onChange={(e) => setSearchItem(e.target.value)}/>
+                            <input type="text" placeholder={'Search here ...'} value={searchItem}
+                                   onChange={(e) => setSearchItem(e.target.value)}/>
                             <Link to={'/search'}>
                                 <button
                                     type={'button'}
@@ -95,21 +76,28 @@ const Navbar = () => {
 
                         </div>
                         <div className={'user-link'}>
-                            <Link to={'/user'} >
+                            <Link to={'/user'}>
                                 <button className={'user-btn'}>
-                                    <i className="fa-solid fa-user"></i>
-                                    <p>{email}</p>
+                                    {
+                                        isAuth ? <i className="fa-solid fa-user" style={{color: "#ffea00"}}></i>
+                                            : <i className="fa-solid fa-user"></i>
+                                    }
                                 </button>
                             </Link>
-                            <Link to={'/login'}><button className={'login-btn'}>Login</button></Link>
-                            <Link to={'/register'}><button className={'register-btn'}>Sing Up</button></Link>
+                            <Link to={'/login'}>
+                                <button className={'login-btn'}>Login</button>
+                            </Link>
+                            <Link to={'/register'}>
+                                <button className={'register-btn'}>Sing Up</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div className="navbar-bottom bg-regal-blue">
                     <div className="container flex flex-between">
                         <ul className={`nav-links flex ${isSidebarOpen ? 'show-nav-links' : ''}`}>
-                            <button type={'button'} className={'navbar-hide-btn text-white'} onClick={() => setIsSidebarOpen(false)}>
+                            <button type={'button'} className={'navbar-hide-btn text-white'}
+                                    onClick={() => setIsSidebarOpen(false)}>
                                 <i className={'fas fa-times'}></i>
                             </button>
                             {
