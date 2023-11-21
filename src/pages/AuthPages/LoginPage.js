@@ -6,9 +6,7 @@ import {useSelector} from "react-redux";
 
 const LoginPage = () => {
 
-    const {isAuth} = useSelector(state => state.auth)
-
-    console.log(isAuth, 'auth')
+    // const {isAuth} = useSelector(state => state.auth)
 
     return (
         <div className={'container'}>

@@ -30,7 +30,7 @@ const HomePage = () => {
             <SwiperImg/>
             <FilterProducts categories={categories}/>
             <Category categories={categories} status={categoryStatus}/>
-            <ProductList products={products} status={productStatus} titlePage={'OUR PRODUCTS'}/>
+            <ProductList products={products} status={productStatus} titlePage={'Акутальные'}/>
 
             <section>
                 {
@@ -41,7 +41,6 @@ const HomePage = () => {
                     />
                 }
             </section>
-            {/*category two products*/}
             <section>
                 {
                     productByCategory[1] &&

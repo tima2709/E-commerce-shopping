@@ -2,9 +2,12 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login as authLogin} from "../../store/authSlice";
 import {useNavigate} from "react-router-dom";
+import {STATUS} from "../../utils/status";
+import Error from "../Error/Error";
+import Loader from "../Loader/Loader";
 
 
 const schema = yup
@@ -18,6 +21,8 @@ const schema = yup
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const {status} = useSelector(state => state.auth)
 
     const {
         register,
@@ -33,6 +38,9 @@ const Login = () => {
         }))
         navigate('/user')
     }
+
+    if (status === STATUS.ERROR) return (<Error/>)
+    if (status === STATUS.LOADING) return (<Loader/>)
 
 
     return (

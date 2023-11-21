@@ -1,35 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import "./Navbar.scss"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchCategories} from "../../store/categorySlice";
 import {getCartTotal} from "../../store/cartSlice";
 import {axiosSearchProducts} from "../../store/searchSlice";
 import SearchPage from "../../pages/SearchPage/SearchPage";
+import {authLogout} from "../../store/authSlice";
 
 const Navbar = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {data: categories} = useSelector(state => state.category)
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const {totalItems} = useSelector(state => state.cart)
     const [searchItem, setSearchItem] = useState('')
 
-    const {isAuth} = useSelector(state => state.auth)
+    const {user, isAuth} = useSelector(state => state.auth)
 
     const handleSearch = () => {
         dispatch(axiosSearchProducts(searchItem))
         setSearchItem('')
     }
 
+    const handleLogout = () => {
+        dispatch(authLogout())
+        navigate('/')
+    }
+
     useEffect(() => {
         dispatch(fetchCategories())
         dispatch(getCartTotal())
     }, [dispatch]);
-
-    // const heyUser = () => {
-    //     // if(!isAuth) return toast.error('Please sing in sir')
-    // }
-
 
     return (
         <nav className={`navbar`}>
@@ -79,17 +81,27 @@ const Navbar = () => {
                             <Link to={'/user'}>
                                 <button className={'user-btn'}>
                                     {
-                                        isAuth ? <i className="fa-solid fa-user" style={{color: "#ffea00"}}></i>
+                                        isAuth ? <img className={'avatar_nav'} src={user.avatar} alt=""/>
                                             : <i className="fa-solid fa-user"></i>
                                     }
+
                                 </button>
                             </Link>
-                            <Link to={'/login'}>
-                                <button className={'login-btn'}>Login</button>
-                            </Link>
-                            <Link to={'/register'}>
-                                <button className={'register-btn'}>Sing Up</button>
-                            </Link>
+                            {
+                                isAuth
+                                    ? <button onClick={handleLogout} className={'logOut-btn'}>Log out</button>
+                                    :
+                                    <div style={{marginLeft: '15px'}}>
+                                        <Link to={'/login'}>
+                                            <button className={'login-btn'}>Login</button>
+                                        </Link>
+                                        <Link  style={{marginLeft: '15px'}} to={'/register'}>
+                                            <button className={'register-btn'}>Sing Up</button>
+                                        </Link>
+                                    </div>
+                            }
+
+
                         </div>
                     </div>
                 </div>

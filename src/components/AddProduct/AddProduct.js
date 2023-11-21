@@ -15,7 +15,7 @@ const AddProduct = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={'add-form'}>
-                <h2>Add new Product</h2>
+                <h2>Добавить новый продукт</h2>
                 <input
                     type="text" {...register("title")}
                     placeholder={'title'}

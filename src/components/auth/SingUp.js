@@ -2,9 +2,13 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {register as authRegister} from "../../store/authSlice";
 import './auth.scss';
+import {useNavigate} from "react-router-dom";
+import {STATUS} from "../../utils/status";
+import Error from "../Error/Error";
+import Loader from "../Loader/Loader";
 
 
 const schema = yup
@@ -21,6 +25,9 @@ const schema = yup
 
 const SingUp = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const {status} = useSelector(state => state.auth)
 
     const {
         register,
@@ -30,7 +37,6 @@ const SingUp = () => {
         resolver: yupResolver(schema)
     })
     const onSubmit = (data) => {
-        console.log(data, 'form')
         dispatch(authRegister({
             email: data.email,
             name: data.name,
@@ -38,7 +44,11 @@ const SingUp = () => {
             role: data.role,
             avatar: data.avatar,
         }))
+        navigate('/login')
     }
+
+    if (status === STATUS.ERROR) return (<Error/>)
+    if (status === STATUS.LOADING) return (<Loader/>)
 
 
     return (
@@ -70,7 +80,11 @@ const SingUp = () => {
             <div className={'inputs-register'}>
                 <label>
                     Роль
-                    <input {...register("role")}/>
+                    {/*<input {...register("role")}/>*/}
+                    <select name="role" {...register("role")} >
+                        <option value="admin">Админ</option>
+                        <option value="customer">Клиент</option>
+                    </select>
                 </label>
                 <div>
                     {errors?.role && <p>{errors.role.message || "Ошибка"}</p>}

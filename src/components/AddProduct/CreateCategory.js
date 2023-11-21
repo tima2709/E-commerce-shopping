@@ -15,7 +15,7 @@ const CreateCategory = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={'add-form'}>
-                <h2>Create new category</h2>
+                <h2>Создать новую категорию</h2>
                 <input
                     type="text" {...register("name")}
                     placeholder={'name'}
